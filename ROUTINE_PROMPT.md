@@ -37,7 +37,7 @@ Passos:
 
 3. **Gerar o pacote de texto** seguindo `skills/criar-post/SKILL.md` (legenda, primeiro comentário/hashtags, sugestão de horário, alt text). É um pacote só, vale pro post inteiro (não um por imagem) — mas gere um alt text por imagem se o carrossel tiver fotos bem diferentes entre si (ex.: modelo vestindo vs. still do produto).
 
-4. **Tratar cada imagem** seguindo `skills/tag-de-preco/SKILL.md`, rodando `scripts/tag_preco.py` pra cada `foto-original-N.jpg` → `foto-final-N.jpg`, com os mesmos parâmetros extraídos (preço/marca valem pra todas as fotos do mesmo post; instale `pillow` via `pip install pillow --break-system-packages -q` se necessário). Use o formato `4x5` por padrão, a menos que a mensagem do usuário peça outro. Se preço ou marca estiverem faltando, pule este passo e siga com as fotos originais.
+4. **Tratar cada imagem** seguindo `skills/tag-de-preco/SKILL.md`, rodando `scripts/tag_preco.py` pra cada `foto-original-N.jpg` → `foto-final-N.jpg` (instale `pillow` via `pip install pillow --break-system-packages -q` se necessário). Use o formato `4x5` por padrão, a menos que a mensagem do usuário peça outro. Marca vale pra todas as fotos do post. **Preço só na primeira foto** (a capa): passe `--preco` (e `--extra`, se houver) só na foto 1; nas demais, rode sem `--preco` — ficam só com o chip de marca e o selo H!. Se for só 1 foto, ela é a "primeira" e leva a pill normalmente. Se preço ou marca estiverem faltando, pule este passo e siga com as fotos originais.
 
 5. **Responder no Telegram**, usando o bot (variável de ambiente `TELEGRAM_BOT_TOKEN`) e o `chat_id` do payload:
 

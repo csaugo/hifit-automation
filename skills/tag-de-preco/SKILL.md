@@ -43,11 +43,27 @@ python3 "${CLAUDE_PLUGIN_ROOT}/skills/tag-de-preco/scripts/tag_preco.py" \
 | Flag | Valores | Default |
 |---|---|---|
 | `--formato` | `4x5` (feed 1080×1350), `1x1` (1080×1080), `9x16` (story 1080×1920) | `4x5` |
-| `--preco` | texto da pill (obrigatório) | — |
+| `--preco` | texto da pill (omitir pula a pill de preço — chip de marca e selo continuam normalmente) | vazio |
 | `--extra` | complemento após "·" na pill | vazio |
 | `--marca` | texto do chip | vazio (sem chip) |
 | `--pos-pill` | `baixo-esq`, `baixo-dir` | `baixo-esq` |
 | `--sem-logo` | omite o selo "H!" no canto superior direito | logo ativo |
+
+## Carrossel: pill de preço só na primeira foto
+
+Quando o post tiver mais de uma imagem (carrossel), a pill neon de preço vai **só na primeira foto** (a capa). Nas demais, aplique **apenas** o chip de marca e o selo H! — rode o script sem `--preco`:
+
+```bash
+# foto 1 (capa): pill de preço + chip + selo
+python3 "${CLAUDE_PLUGIN_ROOT}/skills/tag-de-preco/scripts/tag_preco.py" \
+  --input foto-1.jpg --output foto-1-final.jpg \
+  --preco "R$ 189,90" --marca "VIA MÁFIA" --formato 4x5
+
+# fotos 2+: sem pill, só chip + selo
+python3 "${CLAUDE_PLUGIN_ROOT}/skills/tag-de-preco/scripts/tag_preco.py" \
+  --input foto-2.jpg --output foto-2-final.jpg \
+  --marca "VIA MÁFIA" --formato 4x5
+```
 
 ## Regras visuais (identidade aprovada)
 

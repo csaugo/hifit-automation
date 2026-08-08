@@ -67,7 +67,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", required=True)
     ap.add_argument("--output", required=True)
-    ap.add_argument("--preco", required=True, help='ex.: "R$ 189,90"')
+    ap.add_argument("--preco", default="", help='ex.: "R$ 189,90" (omitir pula a pill de preço — chip de marca e selo continuam)')
     ap.add_argument("--extra", default="", help='ex.: "pronta entrega!"')
     ap.add_argument("--marca", default="", help='chip: ex. "VIA MÁFIA"')
     ap.add_argument("--formato", default="4x5", choices=list(FORMATOS))
@@ -80,17 +80,18 @@ def main():
     fp = font_path()
     margin = round(W * 0.032)
 
-    # ---- pill neon de preço ----
-    texto = a.preco + (f" · {a.extra}" if a.extra else "")
-    f_pill = ImageFont.truetype(fp, round(W * 0.040))
-    pill = rounded_pill(texto, f_pill, round(W * 0.030), round(W * 0.017), NEON, PRETO)
-    max_w = round(W * 0.86)
-    if pill.width > max_w:  # preço muito longo -> reduz fonte
-        f_pill = ImageFont.truetype(fp, round(W * 0.032))
-        pill = rounded_pill(texto, f_pill, round(W * 0.026), round(W * 0.015), NEON, PRETO)
-    y_pill = H - pill.height - margin - round(H * 0.006)
-    x_pill = margin if a.pos_pill == "baixo-esq" else W - pill.width - margin - 8
-    paste_with_shadow(base, pill, (x_pill, y_pill), angle=2.0)
+    # ---- pill neon de preço (opcional — só na foto de capa do carrossel, por exemplo) ----
+    if a.preco:
+        texto = a.preco + (f" · {a.extra}" if a.extra else "")
+        f_pill = ImageFont.truetype(fp, round(W * 0.040))
+        pill = rounded_pill(texto, f_pill, round(W * 0.030), round(W * 0.017), NEON, PRETO)
+        max_w = round(W * 0.86)
+        if pill.width > max_w:  # preço muito longo -> reduz fonte
+            f_pill = ImageFont.truetype(fp, round(W * 0.032))
+            pill = rounded_pill(texto, f_pill, round(W * 0.026), round(W * 0.015), NEON, PRETO)
+        y_pill = H - pill.height - margin - round(H * 0.006)
+        x_pill = margin if a.pos_pill == "baixo-esq" else W - pill.width - margin - 8
+        paste_with_shadow(base, pill, (x_pill, y_pill), angle=2.0)
 
     # ---- chip da marca (canto oposto) ----
     if a.marca:
