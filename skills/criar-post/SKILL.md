@@ -46,6 +46,7 @@ Vista sua Força 💚⚡
 - Sempre citar a marca do produto — o posicionamento é multimarcas: "as marcas que aguentam seu treino"
 - Emojis permitidos: ⚡💚🔥💪🖤 (máx. 3 por legenda)
 - Preço sempre no formato "R$ 189,90" e, quando parcelado, "3x de R$ 63,30 sem juros"
+- Para STORIES, as regras visuais de preço/desconto são as da skill `criar-story` (lá o desconto grande na arte é bem-vindo — o oposto do feed)
 - CTAs padrão (variar): "Link na bio", "Chama no direct pra reservar", "Corre pra loja", "Toca na sacola"
 
 ## Hashtags (primeiro comentário)
